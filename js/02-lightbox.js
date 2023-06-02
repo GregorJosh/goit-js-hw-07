@@ -20,3 +20,4 @@ new SimpleLightbox("ul.gallery a", {
   captionPosition: "outside",
   captionDelay: 250,
 });
+
