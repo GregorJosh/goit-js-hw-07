@@ -17,5 +17,6 @@ document.querySelector("ul.gallery").insertAdjacentHTML(
 
 new SimpleLightbox("ul.gallery a", {
   captionsData: "alt",
+  captionPosition: "outside",
   captionDelay: 250,
 });
