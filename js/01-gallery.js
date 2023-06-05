@@ -8,8 +8,6 @@ const onEscapeKeyEvent = (event) => {
   if (event.key === "Escape" && basicLightboxInstance) {
     basicLightboxInstance.close();
     basicLightboxInstance = null;
-
-    galleryULElement.removeEventListener("keyup", onEscapeKeyEvent);
   }
 };
 const onGalleryItemClick = (event) => {
@@ -19,7 +17,14 @@ const onGalleryItemClick = (event) => {
     const { alt } = event.target;
     const { href } = event.target.parentElement;
 
-    basicLightboxInstance = basicLightbox.create(`<img src="${href}" alt="${alt}" />`);
+    basicLightboxInstance = basicLightbox.create(
+      `<img src="${href}" alt="${alt}" />`,
+      {
+        onClose: (instance) => {
+          galleryULElement.removeEventListener("keyup", onEscapeKeyEvent);
+        }
+      },
+    );
     basicLightboxInstance.show();
 
     galleryULElement.addEventListener("keyup", onEscapeKeyEvent);
